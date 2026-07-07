@@ -1,0 +1,148 @@
+backend:
+  name: github
+  repo: tpma1205/recipe-net
+  branch: main
+  base_url: YOUR_CLOUDFLARE_WORKER_URL        # ← 填入你的 Cloudflare Workers URL
+
+# 上傳照片的存放目錄
+media_folder: "uploads"
+public_folder: "/uploads"
+
+# 語系
+locale: "zh_Hant"
+
+collections:
+  - name: "recipes"
+    label: "食譜"
+    label_singular: "食譜"
+    folder: "recipes"
+    create: true
+    slug: "{{slug}}"           # 使用標題自動產生英文檔名
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - label: "食譜名稱"
+        name: "title"
+        widget: "string"
+        required: true
+        hint: "必填，1-30 字"
+        pattern:
+          - "^.{1,30}$"
+          - "食譜名稱需在 1-30 字之間"
+
+      - label: "類型標籤"
+        name: "tags"
+        widget: "select"
+        multiple: true
+        required: true
+        min: 1
+        options:
+          - "主食"
+          - "湯"
+          - "小菜"
+          - "甜點"
+          - "快炒"
+          - "台式"
+          - "日式"
+          - "西式"
+          - "韓式"
+          - "早餐"
+          - "點心"
+        hint: "必選至少 1 個，可自行輸入新增"
+
+      - label: "料理設備"
+        name: "equipment"
+        widget: "select"
+        multiple: true
+        required: true
+        min: 1
+        options:
+          - "炒鍋"
+          - "湯鍋"
+          - "電鍋"
+          - "烤箱"
+          - "氣炸鍋"
+          - "平底鍋"
+          - "壓力鍋"
+          - "瓦斯爐"
+          - "微波爐"
+          - "電磁爐"
+          - "蒸鍋"
+        hint: "必選至少 1 項，可自行輸入新增"
+
+      - label: "幾人份"
+        name: "servings"
+        widget: "number"
+        required: true
+        min: 1
+        max: 20
+        value_type: "int"
+        hint: "必填，1-20 人份"
+
+      - label: "食材"
+        name: "ingredients"
+        widget: "list"
+        required: true
+        min: 1
+        label_singular: "食材"
+        hint: "必填至少 1 項"
+        fields:
+          - label: "食材名稱"
+            name: "name"
+            widget: "string"
+            required: true
+          - label: "份量"
+            name: "amount"
+            widget: "string"
+            required: true
+
+      - label: "調味料"
+        name: "seasonings"
+        widget: "list"
+        required: false
+        label_singular: "調味料"
+        fields:
+          - label: "調味料名稱"
+            name: "name"
+            widget: "string"
+            required: true
+          - label: "份量"
+            name: "amount"
+            widget: "string"
+            required: true
+
+      - label: "料理步驟"
+        name: "steps"
+        widget: "list"
+        required: true
+        min: 1
+        label_singular: "步驟"
+        hint: "必填至少 1 步"
+        field:
+          label: "步驟說明"
+          name: "step"
+          widget: "text"
+
+      - label: "料理照片"
+        name: "photos"
+        widget: "list"
+        required: false
+        max: 3
+        label_singular: "照片"
+        hint: "非必填，最多 3 張，每張上限 500KB"
+        field:
+          label: "照片"
+          name: "photo"
+          widget: "image"
+          media_library:
+            config:
+              max_file_size: 512000   # 500KB in bytes
+
+      - label: "備註"
+        name: "notes"
+        widget: "text"
+        required: false
+        pattern:
+          - "^[\\s\\S]{0,500}$"
+          - "備註上限 500 字"
+        hint: "非必填，上限 500 字"

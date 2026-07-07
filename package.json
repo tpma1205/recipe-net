@@ -1,0 +1,14 @@
+{
+  "name": "personal-recipe-site",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "個人食譜記錄網站",
+  "scripts": {
+    "dev": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "gray-matter": "^4.0.3"
+  }
+}

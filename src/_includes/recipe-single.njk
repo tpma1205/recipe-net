@@ -1,0 +1,138 @@
+---
+layout: base.njk
+---
+<article class="recipe-page">
+  <div class="container">
+
+    <!-- 標題區 -->
+    <header class="recipe-header">
+      <a href="/" class="back-link" aria-label="返回食譜列表">
+        <i class="ti ti-arrow-left" aria-hidden="true"></i>
+        所有食譜
+      </a>
+      <h1 class="recipe-title">{{ title }}</h1>
+      <div class="recipe-header-tags">
+        {%- for tag in tags %}
+        <span class="tag tag--lg">{{ tag }}</span>
+        {%- endfor %}
+      </div>
+    </header>
+
+    <!-- 資訊列 -->
+    <div class="recipe-meta">
+      <div class="recipe-meta-item">
+        <i class="ti ti-users" aria-hidden="true"></i>
+        <span>{{ servings }} 人份</span>
+      </div>
+      <div class="recipe-meta-item">
+        <i class="ti ti-tools-kitchen-2" aria-hidden="true"></i>
+        <span>{{ (equipment or []) | join('・') }}</span>
+      </div>
+    </div>
+
+    <!-- 照片區 -->
+    {%- if photos and photos.length > 0 %}
+    <div class="recipe-photos" id="photo-gallery">
+      <div class="photo-track" id="photo-track">
+        {%- for photo in photos %}
+        <div class="photo-slide" role="img" aria-label="食譜照片 {{ loop.index }}">
+          <img src="{{ photo }}" alt="{{ title }} 照片 {{ loop.index }}" class="photo-img" />
+        </div>
+        {%- endfor %}
+      </div>
+      {%- if photos.length > 1 %}
+      <button class="photo-btn photo-btn--prev" id="photo-prev" aria-label="上一張">
+        <i class="ti ti-chevron-left" aria-hidden="true"></i>
+      </button>
+      <button class="photo-btn photo-btn--next" id="photo-next" aria-label="下一張">
+        <i class="ti ti-chevron-right" aria-hidden="true"></i>
+      </button>
+      <div class="photo-dots" id="photo-dots" aria-label="照片導覽">
+        {%- for photo in photos %}
+        <button
+          class="photo-dot {% if loop.first %}active{% endif %}"
+          data-index="{{ loop.index0 }}"
+          aria-label="照片 {{ loop.index }}"
+        ></button>
+        {%- endfor %}
+      </div>
+      {%- endif %}
+    </div>
+    {%- endif %}
+
+    <!-- 食材 + 調味料 -->
+    <div class="recipe-ingredients-grid">
+      <section class="recipe-section">
+        <h2 class="section-title">
+          <i class="ti ti-basket" aria-hidden="true"></i>
+          食材
+        </h2>
+        <ul class="ingredient-list">
+          {%- for item in ingredients %}
+          <li class="ingredient-item">
+            <span class="ingredient-name">{{ item.name }}</span>
+            <span class="ingredient-amount">{{ item.amount }}</span>
+          </li>
+          {%- endfor %}
+        </ul>
+      </section>
+
+      {%- if seasonings and seasonings.length > 0 %}
+      <section class="recipe-section">
+        <h2 class="section-title">
+          <i class="ti ti-bottle" aria-hidden="true"></i>
+          調味料
+        </h2>
+        <ul class="ingredient-list">
+          {%- for item in seasonings %}
+          <li class="ingredient-item">
+            <span class="ingredient-name">{{ item.name }}</span>
+            <span class="ingredient-amount">{{ item.amount }}</span>
+          </li>
+          {%- endfor %}
+        </ul>
+      </section>
+      {%- else %}
+      <section class="recipe-section">
+        <h2 class="section-title">
+          <i class="ti ti-bottle" aria-hidden="true"></i>
+          調味料
+        </h2>
+        <p class="empty-note">無需額外調味料</p>
+      </section>
+      {%- endif %}
+    </div>
+
+    <!-- 步驟 -->
+    <section class="recipe-section">
+      <h2 class="section-title">
+        <i class="ti ti-list-numbers" aria-hidden="true"></i>
+        步驟
+      </h2>
+      <ol class="steps-list">
+        {%- for step in steps %}
+        <li class="step-item">
+          <span class="step-num" aria-hidden="true">{{ loop.index }}</span>
+          <p class="step-text">{{ step }}</p>
+        </li>
+        {%- endfor %}
+      </ol>
+    </section>
+
+    <!-- 備註 -->
+    {%- if notes and notes | trim %}
+    <section class="recipe-section">
+      <h2 class="section-title">
+        <i class="ti ti-note" aria-hidden="true"></i>
+        備註
+      </h2>
+      <p class="recipe-notes">{{ notes }}</p>
+    </section>
+    {%- endif %}
+
+  </div>
+</article>
+
+{%- if photos and photos.length > 1 %}
+<script src="/assets/js/gallery.js" defer></script>
+{%- endif %}

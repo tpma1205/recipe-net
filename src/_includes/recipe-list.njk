@@ -1,0 +1,90 @@
+---
+layout: base.njk
+description: "個人食譜記錄網站，搜尋食材即可找到對應食譜。"
+---
+<section class="list-page">
+  <div class="container">
+
+    <!-- 搜尋框 -->
+    <div class="search-wrapper">
+      <i class="ti ti-search search-icon" aria-hidden="true"></i>
+      <input
+        id="search-input"
+        type="search"
+        class="search-input"
+        placeholder="搜尋食材、調味料、料理名稱..."
+        aria-label="搜尋食譜"
+        autocomplete="off"
+      />
+      <span id="search-count" class="search-count" aria-live="polite"></span>
+    </div>
+
+    <!-- 標籤篩選列 -->
+    <div class="filter-bar" role="group" aria-label="依標籤篩選">
+      <button class="filter-tag active" data-tag="__all__">全部</button>
+      {%- set allTags = [] %}
+      {%- for recipe in recipes %}
+        {%- for tag in recipe.tags %}
+          {%- if tag not in allTags %}
+            {%- set allTags = allTags.concat([tag]) %}
+          {%- endif %}
+        {%- endfor %}
+      {%- endfor %}
+      {%- for tag in allTags %}
+      <button class="filter-tag" data-tag="{{ tag }}">{{ tag }}</button>
+      {%- endfor %}
+    </div>
+
+    <!-- 食譜卡片列表 -->
+    <div id="recipe-grid" class="recipe-grid">
+      {%- for recipe in recipes %}
+      <article
+        class="recipe-card"
+        data-title="{{ recipe.title }}"
+        data-tags="{{ recipe.tags | join(',') }}"
+        data-equipment="{{ recipe.equipment | join(',') }}"
+        data-ingredients="{{ recipe.ingredients | join(',') }}"
+        data-seasonings="{{ recipe.seasonings | join(',') }}"
+      >
+        <a href="{{ recipe.url }}" class="recipe-card-link">
+          <div class="recipe-card-thumb">
+            {%- if recipe.photo %}
+            <img
+              src="{{ recipe.photo }}"
+              alt="{{ recipe.title }} 封面照片"
+              class="recipe-card-img"
+              loading="lazy"
+            />
+            {%- else %}
+            <div class="recipe-card-placeholder" aria-hidden="true">
+              <i class="ti ti-soup"></i>
+            </div>
+            {%- endif %}
+          </div>
+          <div class="recipe-card-body">
+            <h2 class="recipe-card-title">{{ recipe.title }}</h2>
+            <div class="recipe-card-tags">
+              {%- for tag in recipe.tags %}
+              <span class="tag">{{ tag }}</span>
+              {%- endfor %}
+            </div>
+          </div>
+        </a>
+      </article>
+      {%- endfor %}
+    </div>
+
+    <!-- 無結果提示 -->
+    <div id="no-results" class="no-results" hidden>
+      <i class="ti ti-mood-empty" aria-hidden="true"></i>
+      <p>找不到符合的食譜，試試其他關鍵字。</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- 把食譜索引資料嵌入頁面供 JS 使用 -->
+<script id="recipes-data" type="application/json">
+{{ recipes | dump | safe }}
+</script>
+<script src="/assets/js/search.js" defer></script>
