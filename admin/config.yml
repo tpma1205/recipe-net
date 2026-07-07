@@ -2,7 +2,7 @@ backend:
   name: github
   repo: tpma1205/recipe-net
   branch: main
-  base_url: YOUR_CLOUDFLARE_WORKER_URL        # ← 填入你的 Cloudflare Workers URL
+  base_url: https://recipe-oauth.tpma1205.workers.dev
 
 # 上傳照片的存放目錄
 media_folder: "uploads"
