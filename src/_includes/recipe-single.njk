@@ -20,14 +20,18 @@ layout: base.njk
 
     <!-- 資訊列 -->
     <div class="recipe-meta">
+      {%- if servings %}
       <div class="recipe-meta-item">
         <i class="ti ti-users" aria-hidden="true"></i>
         <span>{{ servings }} 人份</span>
       </div>
+      {%- endif %}
+      {%- if equipment and equipment.length > 0 %}
       <div class="recipe-meta-item">
         <i class="ti ti-tools-kitchen-2" aria-hidden="true"></i>
-        <span>{{ (equipment or []) | join('・') }}</span>
+        <span>{{ equipment | join('・') }}</span>
       </div>
+      {%- endif %}
     </div>
 
     <!-- 照片區 -->

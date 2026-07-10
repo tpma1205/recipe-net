@@ -17,7 +17,7 @@ collections:
     label_singular: "食譜"
     folder: "recipes"
     create: true
-    slug: "{{slug}}"           # 使用標題自動產生英文檔名
+    slug: "{{year}}{{month}}{{day}}{{hour}}{{minute}}{{second}}"   # 時間戳記檔名，避免中文標題產生中文檔名
     extension: "md"
     format: "frontmatter"
     fields:
@@ -32,52 +32,27 @@ collections:
 
       - label: "類型標籤"
         name: "tags"
-        widget: "select"
-        multiple: true
+        widget: "list"
         required: true
         min: 1
-        options:
-          - "主食"
-          - "湯"
-          - "小菜"
-          - "甜點"
-          - "快炒"
-          - "台式"
-          - "日式"
-          - "西式"
-          - "韓式"
-          - "早餐"
-          - "點心"
-        hint: "必選至少 1 個，可自行輸入新增"
+        label_singular: "標籤"
+        hint: "必選至少 1 個，直接輸入標籤名稱即可新增（常見：主食、湯、小菜、甜點、快炒、台式、日式、西式、韓式、早餐、點心）"
 
       - label: "料理設備"
         name: "equipment"
-        widget: "select"
-        multiple: true
-        required: true
-        min: 1
-        options:
-          - "炒鍋"
-          - "湯鍋"
-          - "電鍋"
-          - "烤箱"
-          - "氣炸鍋"
-          - "平底鍋"
-          - "壓力鍋"
-          - "瓦斯爐"
-          - "微波爐"
-          - "電磁爐"
-          - "蒸鍋"
-        hint: "必選至少 1 項，可自行輸入新增"
+        widget: "list"
+        required: false
+        label_singular: "設備"
+        hint: "非必填，直接輸入設備名稱即可新增（常見：炒鍋、湯鍋、電鍋、烤箱、氣炸鍋、平底鍋、壓力鍋、瓦斯爐、微波爐、電磁爐、蒸鍋）"
 
       - label: "幾人份"
         name: "servings"
         widget: "number"
-        required: true
+        required: false
         min: 1
         max: 20
         value_type: "int"
-        hint: "必填，1-20 人份"
+        hint: "非必填，1-20 人份"
 
       - label: "食材"
         name: "ingredients"
