@@ -30,6 +30,7 @@ export default async function () {
       seasonings: (data.seasonings ?? []).map((s) => s.name ?? s),
       photo: (data.photos ?? [])[0] ?? null,
       url: `/recipes/${slug}/`,
+      slug,
     });
   }
 

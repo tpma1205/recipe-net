@@ -6,13 +6,6 @@
 (function () {
   "use strict";
 
-  // ── 讀取資料 ──────────────────────────────────────────────
-  const dataEl = document.getElementById("recipes-data");
-  if (!dataEl) return;
-
-  /** @type {Array<{title:string, tags:string[], equipment:string[], ingredients:string[], seasonings:string[], photo:string|null, url:string}>} */
-  const recipes = JSON.parse(dataEl.textContent);
-
   // ── DOM refs ─────────────────────────────────────────────
   const searchInput = document.getElementById("search-input");
   const searchCount = document.getElementById("search-count");
@@ -22,6 +15,10 @@
 
   if (!searchInput || !recipeGrid) return;
 
+  // ── 讀取資料（建置時期產生的索引） ──────────────────────
+  /** @type {Array<{title:string, tags:string[], equipment:string[], ingredients:string[], seasonings:string[], photo:string|null, url:string, slug:string}>} */
+  let recipes = [];
+
   /** @type {string[]} */
   let activeFilters = []; // 空陣列 = 全部
 
@@ -29,9 +26,9 @@
   /**
    * @param {string} keyword
    * @param {string[]} filters
-   * @returns {Set<string>} 符合條件的食譜 url set
+   * @returns {Set<string>} 符合條件的食譜 slug set
    */
-  function getMatchedUrls(keyword, filters) {
+  function getMatchedSlugs(keyword, filters) {
     const kw = keyword.trim().toLowerCase();
     return new Set(
       recipes
@@ -59,20 +56,20 @@
             .toLowerCase()
             .includes(kw);
         })
-        .map((r) => r.url)
+        .map((r) => r.slug)
     );
   }
 
   // ── DOM 更新 ─────────────────────────────────────────────
   function render() {
     const kw      = searchInput.value;
-    const matched = getMatchedUrls(kw, activeFilters);
+    const matched = getMatchedSlugs(kw, activeFilters);
     const cards   = recipeGrid.querySelectorAll(".recipe-card");
     let visible   = 0;
 
     cards.forEach((card) => {
-      const url = card.querySelector(".recipe-card-link")?.getAttribute("href");
-      if (matched.has(url)) {
+      const slug = card.querySelector(".recipe-card-link")?.dataset.slug;
+      if (matched.has(slug)) {
         card.hidden = false;
         visible++;
       } else {
@@ -128,6 +125,11 @@
     });
   });
 
-  // 初始 render
-  render();
+  // ── 載入索引資料後初始 render ──────────────────────────────
+  fetch(window.RECIPES_INDEX_URL || "/assets/recipes-index.json")
+    .then((res) => res.json())
+    .then((data) => {
+      recipes = data;
+      render();
+    });
 })();

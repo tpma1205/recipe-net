@@ -284,12 +284,6 @@ ul, ol {
   }
 }
 
-@media (max-width: 480px) {
-  .recipe-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* --- Recipe Card --- */
 .recipe-card {
   background: var(--color-surface);

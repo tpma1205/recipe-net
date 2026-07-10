@@ -9,17 +9,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
-  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | url }}" />
 </head>
 <body>
   <header class="site-header">
     <div class="container">
-      <a href="/" class="site-logo" aria-label="回首頁">
+      <a href="{{ '/' | url }}" class="site-logo" aria-label="回首頁">
         <span class="logo-icon" aria-hidden="true">🍳</span>
         <span class="logo-text">我的食譜</span>
       </a>
       <nav class="site-nav">
-        <a href="/admin/" class="nav-admin-link">
+        <a href="{{ '/admin/' | url }}" class="nav-admin-link">
           <i class="ti ti-settings" aria-hidden="true"></i>
           管理
         </a>

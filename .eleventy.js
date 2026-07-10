@@ -24,6 +24,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("limit", (arr, max) => arr.slice(0, max));
 
   return {
+    pathPrefix: "/recipe-net/",
     dir: {
       input: ".",
       includes: "src/_includes",

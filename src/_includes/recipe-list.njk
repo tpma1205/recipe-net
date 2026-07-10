@@ -46,11 +46,11 @@ description: "個人食譜記錄網站，搜尋食材即可找到對應食譜。
         data-ingredients="{{ recipe.ingredients | join(',') }}"
         data-seasonings="{{ recipe.seasonings | join(',') }}"
       >
-        <a href="{{ recipe.url }}" class="recipe-card-link">
+        <a href="{{ recipe.url | url }}" class="recipe-card-link" data-slug="{{ recipe.slug }}">
           <div class="recipe-card-thumb">
             {%- if recipe.photo %}
             <img
-              src="{{ recipe.photo }}"
+              src="{{ recipe.photo | url }}"
               alt="{{ recipe.title }} 封面照片"
               class="recipe-card-img"
               loading="lazy"
@@ -83,8 +83,5 @@ description: "個人食譜記錄網站，搜尋食材即可找到對應食譜。
   </div>
 </section>
 
-<!-- 把食譜索引資料嵌入頁面供 JS 使用 -->
-<script id="recipes-data" type="application/json">
-{{ recipes | dump | safe }}
-</script>
-<script src="/assets/js/search.js" defer></script>
+<script>window.RECIPES_INDEX_URL = "{{ '/assets/recipes-index.json' | url }}";</script>
+<script src="{{ '/assets/js/search.js' | url }}" defer></script>

@@ -6,7 +6,7 @@ layout: base.njk
 
     <!-- 標題區 -->
     <header class="recipe-header">
-      <a href="/" class="back-link" aria-label="返回食譜列表">
+      <a href="{{ '/' | url }}" class="back-link" aria-label="返回食譜列表">
         <i class="ti ti-arrow-left" aria-hidden="true"></i>
         所有食譜
       </a>
@@ -36,7 +36,7 @@ layout: base.njk
       <div class="photo-track" id="photo-track">
         {%- for photo in photos %}
         <div class="photo-slide" role="img" aria-label="食譜照片 {{ loop.index }}">
-          <img src="{{ photo }}" alt="{{ title }} 照片 {{ loop.index }}" class="photo-img" />
+          <img src="{{ photo | url }}" alt="{{ title }} 照片 {{ loop.index }}" class="photo-img" />
         </div>
         {%- endfor %}
       </div>
@@ -134,5 +134,5 @@ layout: base.njk
 </article>
 
 {%- if photos and photos.length > 1 %}
-<script src="/assets/js/gallery.js" defer></script>
+<script src="{{ '/assets/js/gallery.js' | url }}" defer></script>
 {%- endif %}
