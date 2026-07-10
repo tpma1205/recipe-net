@@ -104,14 +104,14 @@ collections:
         required: false
         max: 3
         label_singular: "照片"
-        hint: "非必填，最多 3 張，每張上限 500KB"
+        hint: "非必填，最多 3 張，每張上限 2MB"
         field:
           label: "照片"
           name: "photo"
           widget: "image"
           media_library:
             config:
-              max_file_size: 512000   # 500KB in bytes
+              max_file_size: 2097152   # 2MB in bytes
 
       - label: "備註"
         name: "notes"

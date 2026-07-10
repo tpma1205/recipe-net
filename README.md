@@ -61,7 +61,7 @@ Decap CMS 需要一個 OAuth 代理服務來處理 GitHub 登入。
 ```
 ├── admin/           # Decap CMS 設定
 ├── recipes/         # 食譜 Markdown 原始檔
-├── uploads/         # 食譜照片（500KB 以下）
+├── uploads/         # 食譜照片（2MB 以下）
 ├── src/
 │   ├── _includes/   # Eleventy 版型
 │   ├── _data/       # 建置時期資料
