@@ -7,8 +7,10 @@ backend:
 local_backend: true
 
 # 上傳照片的存放目錄
+# public_folder 需含 /recipe-net 前綴，因為網站部署在 GitHub Pages 的 /recipe-net/ 子路徑下，
+# 後台自己組網址時不會像前台範本一樣套用 pathPrefix 轉換
 media_folder: "uploads"
-public_folder: "/uploads"
+public_folder: "/recipe-net/uploads"
 
 # 語系
 locale: "zh_Hant"

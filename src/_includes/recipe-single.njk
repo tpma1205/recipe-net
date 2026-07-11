@@ -40,7 +40,7 @@ layout: base.njk
       <div class="photo-track" id="photo-track">
         {%- for photo in photos %}
         <div class="photo-slide" role="img" aria-label="食譜照片 {{ loop.index }}">
-          <img src="{{ photo | url }}" alt="{{ title }} 照片 {{ loop.index }}" class="photo-img" />
+          <img src="{{ photo }}" alt="{{ title }} 照片 {{ loop.index }}" class="photo-img" />
         </div>
         {%- endfor %}
       </div>

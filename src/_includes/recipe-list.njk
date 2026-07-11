@@ -50,7 +50,7 @@ description: "個人食譜記錄網站，搜尋食材即可找到對應食譜。
           <div class="recipe-card-thumb">
             {%- if recipe.photo %}
             <img
-              src="{{ recipe.photo | url }}"
+              src="{{ recipe.photo }}"
               alt="{{ recipe.title }} 封面照片"
               class="recipe-card-img"
               loading="lazy"
