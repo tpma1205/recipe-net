@@ -2,7 +2,6 @@
 title: 滷肉飯
 tags:
   - 主食
-  - 台式
 equipment:
   - 電鍋
   - 炒鍋
