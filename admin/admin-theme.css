@@ -1,0 +1,82 @@
+/* ============================================================
+   後台管理介面客製化樣式
+   目標：套用與前台一致的暖橘色風格與字體
+   ============================================================ */
+
+:root {
+  --admin-primary: #e05a2b;
+  --admin-primary-light: #f07a4e;
+  --admin-primary-bg: #fff5f0;
+  --admin-font: "Noto Sans TC", -apple-system, "PingFang TC", "Microsoft JhengHei", sans-serif;
+}
+
+body {
+  font-family: var(--admin-font) !important;
+}
+
+/* 頂部導覽列 */
+header[class*="AppHeader-css"] {
+  background: #ffffff !important;
+  border-bottom: 2px solid var(--admin-primary-bg);
+}
+
+a[class*="AppHeaderNavLink"] {
+  font-family: var(--admin-font) !important;
+}
+
+a[class*="AppHeaderNavLink"].header-link-active,
+a[class*="AppHeaderNavLink"][aria-current="page"] {
+  color: var(--admin-primary) !important;
+}
+
+/* 左側集合清單
+   注意：Decap 的 CSS-in-JS 會把所有可能的修飾樣式名稱都寫進 class 字串裡
+   （不論該樣式是否真的套用），例如每個項目的 class 都包含
+   "sidebarNavLinkActive" 這個詞。真正用來判斷「是否被選中」的
+   只有語意化的 .sidebar-active，不能用 [class*="sidebarNavLinkActive"] */
+aside[class*="SidebarContainer"] a[class*="SidebarNavLink"].sidebar-active {
+  background-color: var(--admin-primary-bg) !important;
+  color: var(--admin-primary) !important;
+  border-left: 3px solid var(--admin-primary);
+}
+
+aside[class*="SidebarContainer"] a[class*="SidebarNavLink"]:hover {
+  background-color: var(--admin-primary-bg) !important;
+}
+
+/* 主要按鈕：新增食譜 / 新增項目 / 發布 */
+a[class*="CollectionTopNewButton"],
+button[class*="AddButton"],
+span[class*="PublishedToolbarButton"],
+button[class*="PublishedToolbarButton"] {
+  background-color: var(--admin-primary) !important;
+  border-color: var(--admin-primary) !important;
+  color: #ffffff !important;
+  font-family: var(--admin-font) !important;
+}
+
+a[class*="CollectionTopNewButton"]:hover,
+button[class*="AddButton"]:hover {
+  background-color: var(--admin-primary-light) !important;
+}
+
+/* 食譜列表卡片 */
+a[class*="ListCardLink"] {
+  border-radius: 12px !important;
+}
+
+a[class*="ListCardLink"]:hover {
+  box-shadow: 0 0 0 2px var(--admin-primary-light) !important;
+}
+
+/* 欄位標籤與輸入框 focus 狀態 */
+label[class*="FieldLabel"] {
+  font-family: var(--admin-font) !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--admin-primary) !important;
+  box-shadow: 0 0 0 1px var(--admin-primary) !important;
+}

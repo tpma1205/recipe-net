@@ -7,6 +7,7 @@ export default function (eleventyConfig) {
   eleventyConfig.ignores.add("wireframe.md");
   eleventyConfig.ignores.add("個人食譜記錄網站_需求說明書.md");
   eleventyConfig.ignores.add("recipes/recipes.njk");
+  eleventyConfig.ignores.add("tags/**");   // 標籤集合僅供後台 relation widget 使用，不輸出成網頁
 
   // Passthrough copy
   eleventyConfig.addPassthroughCopy("uploads");

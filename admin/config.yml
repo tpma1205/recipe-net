@@ -4,6 +4,8 @@ backend:
   branch: main
   base_url: https://recipe-oauth.tpma1205.workers.dev
 
+local_backend: true
+
 # 上傳照片的存放目錄
 media_folder: "uploads"
 public_folder: "/uploads"
@@ -20,6 +22,8 @@ collections:
     slug: "{{year}}{{month}}{{day}}{{hour}}{{minute}}{{second}}"   # 時間戳記檔名，避免中文標題產生中文檔名
     extension: "md"
     format: "frontmatter"
+    sortableFields: ["title", "commit_date"]
+    summary: "{{title}} · 更新時間 {{commit_date}}"
     fields:
       - label: "食譜名稱"
         name: "title"
@@ -32,11 +36,15 @@ collections:
 
       - label: "類型標籤"
         name: "tags"
-        widget: "list"
+        widget: "relation"
+        collection: "tags"
+        search_fields: ["name"]
+        value_field: "name"
+        display_fields: ["name"]
+        multiple: true
         required: true
         min: 1
-        label_singular: "標籤"
-        hint: "必選至少 1 個，直接輸入標籤名稱即可新增（常見：主食、湯、小菜、甜點、快炒、台式、日式、西式、韓式、早餐、點心）"
+        hint: "從下拉選單挑選標籤；若沒有想要的標籤，請先到「標籤」集合新增"
 
       - label: "料理設備"
         name: "equipment"
@@ -61,6 +69,8 @@ collections:
         min: 1
         label_singular: "食材"
         hint: "必填至少 1 項"
+        collapsed: true
+        summary: "{{fields.name}} — {{fields.amount}}"
         fields:
           - label: "食材名稱"
             name: "name"
@@ -76,6 +86,8 @@ collections:
         widget: "list"
         required: false
         label_singular: "調味料"
+        collapsed: true
+        summary: "{{fields.name}} — {{fields.amount}}"
         fields:
           - label: "調味料名稱"
             name: "name"
@@ -93,6 +105,8 @@ collections:
         min: 1
         label_singular: "步驟"
         hint: "必填至少 1 步"
+        collapsed: true
+        summary: "{{fields.step}}"
         field:
           label: "步驟說明"
           name: "step"
@@ -121,3 +135,19 @@ collections:
           - "^[\\s\\S]{0,500}$"
           - "備註上限 500 字"
         hint: "非必填，上限 500 字"
+
+  - name: "tags"
+    label: "標籤"
+    label_singular: "標籤"
+    folder: "tags"
+    create: true
+    slug: "{{year}}{{month}}{{day}}{{hour}}{{minute}}{{second}}"   # 時間戳記檔名，避免中文標籤產生中文檔名
+    extension: "md"
+    format: "frontmatter"
+    summary: "{{fields.name}}"
+    fields:
+      - label: "標籤名稱"
+        name: "name"
+        widget: "string"
+        required: true
+        hint: "例如：主食、湯、小菜、甜點、快炒、台式、日式、西式、韓式、早餐、點心"
