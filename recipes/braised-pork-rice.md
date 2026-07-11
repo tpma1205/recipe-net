@@ -1,5 +1,5 @@
 ---
-title: "滷肉飯"
+title: 滷肉飯
 tags:
   - 主食
   - 台式
@@ -9,32 +9,33 @@ equipment:
   - 瓦斯爐
 servings: 6
 ingredients:
-  - name: "豬五花肉"
-    amount: "600g，切丁約 1cm"
-  - name: "紅蔥頭（油蔥酥）"
-    amount: "50g"
-  - name: "水煮蛋"
-    amount: "4 顆"
-  - name: "米酒"
-    amount: "2 大匙"
+  - name: 豬五花肉
+    amount: 600g，切丁約 1cm
+  - name: 紅蔥頭（油蔥酥）
+    amount: 50g
+  - name: 水煮蛋
+    amount: 4 顆
+  - name: 米酒
+    amount: 2 大匙
 seasonings:
-  - name: "醬油"
-    amount: "4 大匙"
-  - name: "老抽（深色醬油）"
-    amount: "1 大匙"
-  - name: "冰糖"
-    amount: "1 大匙"
-  - name: "五香粉"
-    amount: "¼ 茶匙"
-  - name: "水"
-    amount: "300 ml"
-photos: []
+  - name: 醬油
+    amount: 4 大匙
+  - name: 老抽（深色醬油）
+    amount: 1 大匙
+  - name: 冰糖
+    amount: 1 大匙
+  - name: 五香粉
+    amount: ¼ 茶匙
+  - name: 水
+    amount: 300 ml
 steps:
-  - "紅蔥頭切薄片，以少量油炒至金黃酥脆，取出備用（或直接使用市售油蔥酥）。"
-  - "原鍋下豬五花肉丁，中大火翻炒至表面略焦、出油。"
-  - "加入米酒炒香，接著加入醬油、老抽、冰糖、五香粉翻炒均勻。"
-  - "倒入水，放入油蔥酥，加入水煮蛋，水量以剛好蓋過食材為準。"
-  - "移入電鍋，外鍋加 1.5 杯水，蓋鍋蒸煮。跳起後悶 10 分鐘再開蓋。"
-  - "試鹹淡，若偏淡可補少許醬油再悶一次。滷汁微稠即可淋飯。"
-notes: "隔夜再加熱風味更佳。五花肉比例建議肥瘦各半，滷汁才夠香。可加入豆乾一起滷。"
+  - 紅蔥頭切薄片，以少量油炒至金黃酥脆，取出備用（或直接使用市售油蔥酥）。
+  - 原鍋下豬五花肉丁，中大火翻炒至表面略焦、出油。
+  - 加入米酒炒香，接著加入醬油、老抽、冰糖、五香粉翻炒均勻。
+  - 倒入水，放入油蔥酥，加入水煮蛋，水量以剛好蓋過食材為準。
+  - 移入電鍋，外鍋加 1.5 杯水，蓋鍋蒸煮。跳起後悶 10 分鐘再開蓋。
+  - 試鹹淡，若偏淡可補少許醬油再悶一次。滷汁微稠即可淋飯。
+photos:
+  - https://imgproxy.icook.network/safe/rt:fit/w:443/el:0/q:80/plain/http://tokyo-kitchen.icook.tw.s3.amazonaws.com/uploads/recipe/cover/311298/4bfd82da6947bb9f.jpg
+notes: 隔夜再加熱風味更佳。五花肉比例建議肥瘦各半，滷汁才夠香。可加入豆乾一起滷。
 ---
