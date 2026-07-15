@@ -10,7 +10,12 @@ layout: base.njk
         <i class="ti ti-arrow-left" aria-hidden="true"></i>
         所有食譜
       </a>
-      <h1 class="recipe-title">{{ title }}</h1>
+      <h1 class="recipe-title">
+        {{ title }}
+        <svg class="recipe-title-stroke" viewBox="0 0 160 14" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M2 8.5C24 3 46 11 68 6.5S112 2 138 7.5c6 1.2 12 2 20 1" fill="none" stroke="var(--color-primary)" stroke-width="3" stroke-linecap="round" />
+        </svg>
+      </h1>
       <div class="recipe-header-tags">
         {%- for tag in tags %}
         <span class="tag tag--lg">{{ tag }}</span>
@@ -75,6 +80,7 @@ layout: base.njk
           {%- for item in ingredients %}
           <li class="ingredient-item">
             <span class="ingredient-name">{{ item.name }}</span>
+            <span class="ingredient-leader" aria-hidden="true"></span>
             <span class="ingredient-amount">{{ item.amount }}</span>
           </li>
           {%- endfor %}
@@ -91,6 +97,7 @@ layout: base.njk
           {%- for item in seasonings %}
           <li class="ingredient-item">
             <span class="ingredient-name">{{ item.name }}</span>
+            <span class="ingredient-leader" aria-hidden="true"></span>
             <span class="ingredient-amount">{{ item.amount }}</span>
           </li>
           {%- endfor %}
@@ -125,11 +132,8 @@ layout: base.njk
 
     <!-- 備註 -->
     {%- if notes and notes | trim %}
-    <section class="recipe-section">
-      <h2 class="section-title">
-        <i class="ti ti-note" aria-hidden="true"></i>
-        備註
-      </h2>
+    <section class="recipe-notes-section">
+      <p class="recipe-notes-label">備註</p>
       <p class="recipe-notes">{{ notes }}</p>
     </section>
     {%- endif %}

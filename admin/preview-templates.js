@@ -69,6 +69,7 @@
           "li",
           { className: "ingredient-item", key: i },
           h("span", { className: "ingredient-name" }, item && item.name),
+          h("span", { className: "ingredient-leader" }),
           h("span", { className: "ingredient-amount" }, item && item.amount)
         );
       });
@@ -87,6 +88,7 @@
                     "li",
                     { className: "ingredient-item", key: i },
                     h("span", { className: "ingredient-name" }, item && item.name),
+                    h("span", { className: "ingredient-leader" }),
                     h("span", { className: "ingredient-amount" }, item && item.amount)
                   );
                 })
@@ -118,7 +120,22 @@
           h(
             "header",
             { className: "recipe-header" },
-            h("h1", { className: "recipe-title" }, title),
+            h(
+              "h1",
+              { className: "recipe-title" },
+              title,
+              h(
+                "svg",
+                { className: "recipe-title-stroke", viewBox: "0 0 160 14", preserveAspectRatio: "none" },
+                h("path", {
+                  d: "M2 8.5C24 3 46 11 68 6.5S112 2 138 7.5c6 1.2 12 2 20 1",
+                  fill: "none",
+                  stroke: "var(--color-primary)",
+                  strokeWidth: 3,
+                  strokeLinecap: "round",
+                })
+              )
+            ),
             h(
               "div",
               { className: "recipe-header-tags" },
@@ -151,8 +168,8 @@
           notes
             ? h(
                 "section",
-                { className: "recipe-section" },
-                h("h2", { className: "section-title" }, "備註"),
+                { className: "recipe-notes-section" },
+                h("p", { className: "recipe-notes-label" }, "備註"),
                 h("p", { className: "recipe-notes" }, notes)
               )
             : null
@@ -161,6 +178,7 @@
     },
   });
 
+  CMS.registerPreviewStyle("https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css");
   CMS.registerPreviewStyle("../assets/css/style.css");
   CMS.registerPreviewTemplate("recipes", RecipePreview);
 
