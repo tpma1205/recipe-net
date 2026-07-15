@@ -2,7 +2,6 @@
 title: 味噌湯
 tags:
   - 湯
-  - 日式
 equipment:
   - 湯鍋
   - 瓦斯爐
