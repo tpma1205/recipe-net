@@ -3,6 +3,7 @@ import { IdAttributePlugin } from "@11ty/eleventy";
 export default function (eleventyConfig) {
   // 排除不需要輸出為網頁的文件
   eleventyConfig.ignores.add("CLAUDE.md");
+  eleventyConfig.ignores.add("CONTEXT.md");
   eleventyConfig.ignores.add("README.md");
   eleventyConfig.ignores.add("wireframe.md");
   eleventyConfig.ignores.add("個人食譜記錄網站_需求說明書.md");

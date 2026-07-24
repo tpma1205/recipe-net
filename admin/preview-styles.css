@@ -1,0 +1,17 @@
+/* ============================================================
+   即時預覽面板專用樣式
+   這裡放的規則只給 Decap 預覽 iframe 用，不屬於正式站台樣式（style.css），
+   也不屬於後台主框架樣式（admin-theme.css），故獨立成一個檔案
+   ============================================================ */
+
+.preview-photos-row {
+  display: flex;
+  gap: 8px;
+}
+
+.preview-photo-thumb {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+}

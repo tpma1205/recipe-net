@@ -1,6 +1,7 @@
 import { readdir, readFile } from "fs/promises";
 import { join } from "path";
 import matter from "gray-matter";
+import { normalizeRecipe, toListSummary } from "../assets/js/recipe-view-model.js";
 
 export default async function () {
   const recipesDir = join(process.cwd(), "recipes");
@@ -21,17 +22,7 @@ export default async function () {
     const { data } = matter(raw);
     const slug = file.replace(/\.md$/, "");
 
-    recipes.push({
-      title: data.title ?? "",
-      tags: data.tags ?? [],
-      equipment: data.equipment ?? [],
-      servings: data.servings ?? 1,
-      ingredients: (data.ingredients ?? []).map((i) => i.name ?? i),
-      seasonings: (data.seasonings ?? []).map((s) => s.name ?? s),
-      photo: (data.photos ?? [])[0] ?? null,
-      url: `/recipes/${slug}/`,
-      slug,
-    });
+    recipes.push(toListSummary(normalizeRecipe(data), { slug }));
   }
 
   return recipes;

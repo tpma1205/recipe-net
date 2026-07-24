@@ -1,6 +1,13 @@
 ---
 layout: base.njk
 ---
+{%- macro ingredientRow(item) %}
+<li class="ingredient-item">
+  <span class="ingredient-name">{{ item.name }}</span>
+  <span class="ingredient-leader" aria-hidden="true"></span>
+  <span class="ingredient-amount">{{ item.amount }}</span>
+</li>
+{%- endmacro %}
 <article class="recipe-page">
   <div class="container">
 
@@ -11,13 +18,13 @@ layout: base.njk
         所有食譜
       </a>
       <h1 class="recipe-title">
-        {{ title }}
+        {{ recipe.title }}
         <svg class="recipe-title-stroke" viewBox="0 0 160 14" preserveAspectRatio="none" aria-hidden="true">
           <path d="M2 8.5C24 3 46 11 68 6.5S112 2 138 7.5c6 1.2 12 2 20 1" fill="none" stroke="var(--color-primary)" stroke-width="3" stroke-linecap="round" />
         </svg>
       </h1>
       <div class="recipe-header-tags">
-        {%- for tag in tags %}
+        {%- for tag in recipe.tags %}
         <span class="tag tag--lg">{{ tag }}</span>
         {%- endfor %}
       </div>
@@ -25,31 +32,31 @@ layout: base.njk
 
     <!-- 資訊列 -->
     <div class="recipe-meta">
-      {%- if servings %}
+      {%- if recipe.servings %}
       <div class="recipe-meta-item">
         <i class="ti ti-users" aria-hidden="true"></i>
-        <span>{{ servings }} 人份</span>
+        <span>{{ recipe.servings }} 人份</span>
       </div>
       {%- endif %}
-      {%- if equipment and equipment.length > 0 %}
+      {%- if recipe.equipment and recipe.equipment.length > 0 %}
       <div class="recipe-meta-item">
         <i class="ti ti-tools-kitchen-2" aria-hidden="true"></i>
-        <span>{{ equipment | join('・') }}</span>
+        <span>{{ recipe.equipment | join('・') }}</span>
       </div>
       {%- endif %}
     </div>
 
     <!-- 照片區 -->
-    {%- if photos and photos.length > 0 %}
+    {%- if recipe.photos and recipe.photos.length > 0 %}
     <div class="recipe-photos" id="photo-gallery">
       <div class="photo-track" id="photo-track">
-        {%- for photo in photos %}
+        {%- for photo in recipe.photos %}
         <div class="photo-slide" role="img" aria-label="食譜照片 {{ loop.index }}">
-          <img src="{{ photo }}" alt="{{ title }} 照片 {{ loop.index }}" class="photo-img" />
+          <img src="{{ photo }}" alt="{{ recipe.title }} 照片 {{ loop.index }}" class="photo-img" />
         </div>
         {%- endfor %}
       </div>
-      {%- if photos.length > 1 %}
+      {%- if recipe.photos.length > 1 %}
       <button class="photo-btn photo-btn--prev" id="photo-prev" aria-label="上一張">
         <i class="ti ti-chevron-left" aria-hidden="true"></i>
       </button>
@@ -57,7 +64,7 @@ layout: base.njk
         <i class="ti ti-chevron-right" aria-hidden="true"></i>
       </button>
       <div class="photo-dots" id="photo-dots" aria-label="照片導覽">
-        {%- for photo in photos %}
+        {%- for photo in recipe.photos %}
         <button
           class="photo-dot {% if loop.first %}active{% endif %}"
           data-index="{{ loop.index0 }}"
@@ -77,29 +84,21 @@ layout: base.njk
           食材
         </h2>
         <ul class="ingredient-list">
-          {%- for item in ingredients %}
-          <li class="ingredient-item">
-            <span class="ingredient-name">{{ item.name }}</span>
-            <span class="ingredient-leader" aria-hidden="true"></span>
-            <span class="ingredient-amount">{{ item.amount }}</span>
-          </li>
+          {%- for item in recipe.ingredients %}
+          {{- ingredientRow(item) }}
           {%- endfor %}
         </ul>
       </section>
 
-      {%- if seasonings and seasonings.length > 0 %}
+      {%- if recipe.seasonings and recipe.seasonings.length > 0 %}
       <section class="recipe-section">
         <h2 class="section-title">
           <i class="ti ti-bottle" aria-hidden="true"></i>
           調味料
         </h2>
         <ul class="ingredient-list">
-          {%- for item in seasonings %}
-          <li class="ingredient-item">
-            <span class="ingredient-name">{{ item.name }}</span>
-            <span class="ingredient-leader" aria-hidden="true"></span>
-            <span class="ingredient-amount">{{ item.amount }}</span>
-          </li>
+          {%- for item in recipe.seasonings %}
+          {{- ingredientRow(item) }}
           {%- endfor %}
         </ul>
       </section>
@@ -121,7 +120,7 @@ layout: base.njk
         步驟
       </h2>
       <ol class="steps-list">
-        {%- for step in steps %}
+        {%- for step in recipe.steps %}
         <li class="step-item">
           <span class="step-num" aria-hidden="true">{{ loop.index }}</span>
           <p class="step-text">{{ step }}</p>
@@ -131,16 +130,16 @@ layout: base.njk
     </section>
 
     <!-- 備註 -->
-    {%- if notes and notes | trim %}
+    {%- if recipe.notes and recipe.notes | trim %}
     <section class="recipe-notes-section">
       <p class="recipe-notes-label">備註</p>
-      <p class="recipe-notes">{{ notes }}</p>
+      <p class="recipe-notes">{{ recipe.notes }}</p>
     </section>
     {%- endif %}
 
   </div>
 </article>
 
-{%- if photos and photos.length > 1 %}
+{%- if recipe.photos and recipe.photos.length > 1 %}
 <script src="{{ '/assets/js/gallery.js' | url }}" defer></script>
 {%- endif %}

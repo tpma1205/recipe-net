@@ -46,7 +46,7 @@ description: "個人食譜記錄網站，搜尋食材即可找到對應食譜。
         data-ingredients="{{ recipe.ingredients | join(',') }}"
         data-seasonings="{{ recipe.seasonings | join(',') }}"
       >
-        <a href="{{ recipe.url | url }}" class="recipe-card-link" data-slug="{{ recipe.slug }}">
+        <a href="{{ recipe.url }}" class="recipe-card-link" data-slug="{{ recipe.slug }}">
           <div class="recipe-card-thumb">
             {%- if recipe.photo %}
             <img
@@ -57,13 +57,7 @@ description: "個人食譜記錄網站，搜尋食材即可找到對應食譜。
             />
             {%- else %}
             <div class="recipe-card-placeholder" aria-hidden="true">
-              <svg viewBox="0 0 32 32">
-                <path d="M13.2 8.4c-.3-1-.1-1.8.4-2.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.6" />
-                <path d="M16.4 8.4c-.3-1.3-.1-2.3.5-3.3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.6" />
-                <path d="M19.6 8.4c-.3-1-.1-1.8.4-2.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.6" />
-                <path d="M7 15c0-1.1.9-2 2-2h14c1.1 0 2 .9 2 2 0 5.5-4 9.6-9 9.6s-9-4.1-9-9.6Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
-                <path d="M23 15.5c1.9.4 3 1.6 3 3s-1.6 2.6-3.6 2.9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-              </svg>
+              <i class="ti ti-soup"></i>
             </div>
             {%- endif %}
           </div>
